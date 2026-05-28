@@ -1,0 +1,89 @@
+{
+  "userName": "",
+  "permissionMode": "yolo",
+  "model": "GLM-5.1",
+  "thinkingBudget": "xhigh",
+  "effortLevel": "high",
+  "serviceTier": "default",
+  "enableAutoTitleGeneration": true,
+  "titleGenerationModel": "",
+  "excludedTags": [],
+  "mediaFolder": "",
+  "systemPrompt": "",
+  "persistentExternalContextPaths": [],
+  "sharedEnvironmentVariables": "",
+  "envSnippets": [],
+  "customContextLimits": {},
+  "keyboardNavigation": {
+    "scrollUpKey": "w",
+    "scrollDownKey": "s",
+    "focusInputKey": "i"
+  },
+  "requireCommandOrControlEnterToSend": false,
+  "locale": "en",
+  "providerConfigs": {
+    "claude": {
+      "safeMode": "acceptEdits",
+      "cliPath": "",
+      "cliPathsByHost": {
+        "device:9a2a6d22-b71c-4b9f-991e-0285893cac13": "/Users/hom/.nvm/versions/node/v20.16.0/bin/claude"
+      },
+      "loadUserSettings": true,
+      "enableChrome": false,
+      "enableBangBash": false,
+      "enableOpus1M": false,
+      "enableSonnet1M": false,
+      "customModels": "GLM-5.1",
+      "lastModel": "GLM-5.1",
+      "environmentVariables": "ANTHROPIC_BASE_URL=https://open.bigmodel.cn/api/anthropic\nANTHROPIC_API_KEY=99d8dd1d954c483188a435c6203d714f.01nykoAiEN8Two5Q\nANTHROPIC_MODEL=GLM-5.1",
+      "environmentHash": "ANTHROPIC_BASE_URL=https://open.bigmodel.cn/api/anthropic|ANTHROPIC_MODEL=GLM-5.1"
+    },
+    "codex": {
+      "enabled": false,
+      "safeMode": "workspace-write",
+      "cliPath": "",
+      "cliPathsByHost": {},
+      "customModels": "",
+      "reasoningSummary": "detailed",
+      "environmentVariables": "",
+      "environmentHash": "",
+      "installationMethodsByHost": {
+        "device:9a2a6d22-b71c-4b9f-991e-0285893cac13": "native-windows"
+      },
+      "wslDistroOverridesByHost": {}
+    },
+    "opencode": {
+      "cliPath": "",
+      "cliPathsByHost": {},
+      "enabled": false,
+      "environmentHash": "",
+      "environmentVariables": "OPENCODE_ENABLE_EXA=1",
+      "modelAliases": {},
+      "preferredThinkingByModel": {},
+      "selectedMode": "",
+      "thinkingOptionsByModel": {},
+      "visibleModels": []
+    }
+  },
+  "settingsProvider": "claude",
+  "savedProviderModel": {
+    "claude": "GLM-5.1"
+  },
+  "savedProviderEffort": {
+    "claude": "high"
+  },
+  "savedProviderServiceTier": {},
+  "savedProviderThinkingBudget": {
+    "claude": "xhigh"
+  },
+  "savedProviderPermissionMode": {
+    "claude": "yolo"
+  },
+  "lastCustomModel": "GLM-5.1",
+  "maxTabs": 3,
+  "tabBarPosition": "input",
+  "enableAutoScroll": true,
+  "deferMathRenderingDuringStreaming": true,
+  "chatViewPlacement": "right-sidebar",
+  "hiddenProviderCommands": {}
+}

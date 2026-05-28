@@ -1,0 +1,24 @@
+{
+  "id": "conv-1779848370599-m3cz47wcs",
+  "providerId": "claude",
+  "title": "Comment on questions",
+  "titleGenerationStatus": "success",
+  "createdAt": 1779848370626,
+  "updatedAt": 1779852753317,
+  "lastResponseAt": 1779852753317,
+  "sessionId": "62853acb-ffc8-4047-8678-fecb5a2973cd",
+  "providerState": {
+    "providerSessionId": "62853acb-ffc8-4047-8678-fecb5a2973cd"
+  },
+  "currentNote": "Ideas/想法.md",
+  "usage": {
+    "model": "GLM-5.1",
+    "inputTokens": 785,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 38400,
+    "contextWindow": 200000,
+    "contextTokens": 39185,
+    "percentage": 20,
+    "contextWindowIsAuthoritative": true
+  }
+}
