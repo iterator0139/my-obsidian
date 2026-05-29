@@ -1,0 +1,102 @@
+{
+  "userName": "",
+  "permissionMode": "yolo",
+  "model": "deepseek-v4-flash",
+  "thinkingBudget": "medium",
+  "effortLevel": "high",
+  "serviceTier": "default",
+  "enableAutoTitleGeneration": true,
+  "titleGenerationModel": "",
+  "excludedTags": [],
+  "mediaFolder": "",
+  "systemPrompt": "",
+  "persistentExternalContextPaths": [],
+  "sharedEnvironmentVariables": "API_TIMEOUT_MS=3000000",
+  "envSnippets": [
+    {
+      "id": "snippet-zhipu-glm",
+      "name": "智谱 GLM",
+      "description": "智谱 Coding Plan（open.bigmodel.cn）",
+      "envVars": "ANTHROPIC_BASE_URL=https://open.bigmodel.cn/api/anthropic\nANTHROPIC_AUTH_TOKEN=token\nANTHROPIC_MODEL=glm-5.1\nANTHROPIC_DEFAULT_OPUS_MODEL=glm-5.1\nANTHROPIC_DEFAULT_SONNET_MODEL=glm-4.7\nANTHROPIC_DEFAULT_HAIKU_MODEL=glm-4.5-air\nCLAUDE_CODE_SUBAGENT_MODEL=glm-4.5-air\nAPI_TIMEOUT_MS=3000000\nCLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1"
+    },
+    {
+      "id": "snippet-deepseek",
+      "name": "DeepSeek",
+      "description": "DeepSeek 网关；含 CLAUDE_CODE_SIMPLE=1（Claudian SDK 兼容 DeepSeek 所必需）",
+      "envVars": "ANTHROPIC_BASE_URL=https://api.deepseek.com/anthropic\nANTHROPIC_AUTH_TOKEN=token\nANTHROPIC_MODEL=deepseek-v4-flash\nANTHROPIC_DEFAULT_OPUS_MODEL=deepseek-v4-pro[1m]\nANTHROPIC_DEFAULT_SONNET_MODEL=deepseek-v4-pro[1m]\nANTHROPIC_DEFAULT_HAIKU_MODEL=deepseek-v4-flash\nCLAUDE_CODE_SUBAGENT_MODEL=deepseek-v4-flash\nCLAUDE_CODE_SIMPLE=1\nAPI_TIMEOUT_MS=3000000\nCLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1"
+    }
+  ],
+  "customContextLimits": {},
+  "keyboardNavigation": {
+    "scrollUpKey": "w",
+    "scrollDownKey": "s",
+    "focusInputKey": "i"
+  },
+  "requireCommandOrControlEnterToSend": false,
+  "locale": "en",
+  "providerConfigs": {
+    "claude": {
+      "safeMode": "acceptEdits",
+      "cliPath": "",
+      "cliPathsByHost": {
+        "device:9a2a6d22-b71c-4b9f-991e-0285893cac13": "/Users/hom/.nvm/versions/node/v20.16.0/bin/claude"
+      },
+      "loadUserSettings": false,
+      "enableChrome": false,
+      "enableBangBash": false,
+      "enableOpus1M": false,
+      "enableSonnet1M": false,
+      "customModels": "glm-5.1\nglm-4.7\nglm-4.5-air\ndeepseek-v4-pro[1m]\ndeepseek-v4-flash",
+      "lastModel": "glm-5.1",
+      "environmentVariables": "ANTHROPIC_BASE_URL=https://api.deepseek.com/anthropic\nANTHROPIC_AUTH_TOKEN=sk-705c961e19d74b31962fb6d154bea5d6\nANTHROPIC_MODEL=deepseek-v4-flash\nANTHROPIC_DEFAULT_OPUS_MODEL=deepseek-v4-pro[1m]\nANTHROPIC_DEFAULT_SONNET_MODEL=deepseek-v4-pro[1m]\nANTHROPIC_DEFAULT_HAIKU_MODEL=deepseek-v4-flash\nCLAUDE_CODE_SUBAGENT_MODEL=deepseek-v4-flash\nCLAUDE_CODE_SIMPLE=1\nAPI_TIMEOUT_MS=3000000\nCLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1",
+      "environmentHash": "ANTHROPIC_BASE_URL=https://api.deepseek.com/anthropic|ANTHROPIC_DEFAULT_HAIKU_MODEL=deepseek-v4-flash|ANTHROPIC_DEFAULT_OPUS_MODEL=deepseek-v4-pro[1m]|ANTHROPIC_DEFAULT_SONNET_MODEL=deepseek-v4-pro[1m]|ANTHROPIC_MODEL=deepseek-v4-flash"
+    },
+    "codex": {
+      "enabled": false,
+      "safeMode": "workspace-write",
+      "cliPath": "",
+      "cliPathsByHost": {},
+      "customModels": "",
+      "reasoningSummary": "detailed",
+      "environmentVariables": "",
+      "environmentHash": "",
+      "installationMethodsByHost": {
+        "device:9a2a6d22-b71c-4b9f-991e-0285893cac13": "native-windows"
+      },
+      "wslDistroOverridesByHost": {}
+    },
+    "opencode": {
+      "cliPath": "",
+      "cliPathsByHost": {},
+      "enabled": false,
+      "environmentHash": "",
+      "environmentVariables": "OPENCODE_ENABLE_EXA=1",
+      "modelAliases": {},
+      "preferredThinkingByModel": {},
+      "selectedMode": "",
+      "thinkingOptionsByModel": {},
+      "visibleModels": []
+    }
+  },
+  "settingsProvider": "claude",
+  "savedProviderModel": {
+    "claude": "deepseek-v4-flash"
+  },
+  "savedProviderEffort": {
+    "claude": "high"
+  },
+  "savedProviderServiceTier": {},
+  "savedProviderThinkingBudget": {
+    "claude": "medium"
+  },
+  "savedProviderPermissionMode": {
+    "claude": "yolo"
+  },
+  "lastCustomModel": "deepseek-v4-flash",
+  "maxTabs": 3,
+  "tabBarPosition": "input",
+  "enableAutoScroll": true,
+  "deferMathRenderingDuringStreaming": true,
+  "chatViewPlacement": "right-sidebar",
+  "hiddenProviderCommands": {}
+}
