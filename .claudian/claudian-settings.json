@@ -1,8 +1,8 @@
 {
   "userName": "",
   "permissionMode": "yolo",
-  "model": "GLM-5.1",
-  "thinkingBudget": "xhigh",
+  "model": "deepseek-v4-flash",
+  "thinkingBudget": "medium",
   "effortLevel": "high",
   "serviceTier": "default",
   "enableAutoTitleGeneration": true,
@@ -11,8 +11,21 @@
   "mediaFolder": "",
   "systemPrompt": "",
   "persistentExternalContextPaths": [],
-  "sharedEnvironmentVariables": "",
-  "envSnippets": [],
+  "sharedEnvironmentVariables": "API_TIMEOUT_MS=3000000",
+  "envSnippets": [
+    {
+      "id": "snippet-zhipu-glm",
+      "name": "智谱 GLM",
+      "description": "智谱 Coding Plan（open.bigmodel.cn）",
+      "envVars": "ANTHROPIC_BASE_URL=https://open.bigmodel.cn/api/anthropic\nANTHROPIC_AUTH_TOKEN=99d8dd1d954c483188a435c6203d714f.01nykoAiEN8Two5Q\nANTHROPIC_MODEL=glm-5.1\nANTHROPIC_DEFAULT_OPUS_MODEL=glm-5.1\nANTHROPIC_DEFAULT_SONNET_MODEL=glm-4.7\nANTHROPIC_DEFAULT_HAIKU_MODEL=glm-4.5-air\nCLAUDE_CODE_SUBAGENT_MODEL=glm-4.5-air\nAPI_TIMEOUT_MS=3000000\nCLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1"
+    },
+    {
+      "id": "snippet-deepseek",
+      "name": "DeepSeek",
+      "description": "DeepSeek 网关；含 CLAUDE_CODE_SIMPLE=1（Claudian SDK 兼容 DeepSeek 所必需）",
+      "envVars": "ANTHROPIC_BASE_URL=https://api.deepseek.com/anthropic\nANTHROPIC_AUTH_TOKEN=sk-705c961e19d74b31962fb6d154bea5d6\nANTHROPIC_MODEL=deepseek-v4-flash\nANTHROPIC_DEFAULT_OPUS_MODEL=deepseek-v4-pro[1m]\nANTHROPIC_DEFAULT_SONNET_MODEL=deepseek-v4-pro[1m]\nANTHROPIC_DEFAULT_HAIKU_MODEL=deepseek-v4-flash\nCLAUDE_CODE_SUBAGENT_MODEL=deepseek-v4-flash\nCLAUDE_CODE_SIMPLE=1\nAPI_TIMEOUT_MS=3000000\nCLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1"
+    }
+  ],
   "customContextLimits": {},
   "keyboardNavigation": {
     "scrollUpKey": "w",
@@ -28,15 +41,15 @@
       "cliPathsByHost": {
         "device:9a2a6d22-b71c-4b9f-991e-0285893cac13": "/Users/hom/.nvm/versions/node/v20.16.0/bin/claude"
       },
-      "loadUserSettings": true,
+      "loadUserSettings": false,
       "enableChrome": false,
       "enableBangBash": false,
       "enableOpus1M": false,
       "enableSonnet1M": false,
-      "customModels": "GLM-5.1",
-      "lastModel": "GLM-5.1",
-      "environmentVariables": "ANTHROPIC_BASE_URL=https://open.bigmodel.cn/api/anthropic\nANTHROPIC_API_KEY=99d8dd1d954c483188a435c6203d714f.01nykoAiEN8Two5Q\nANTHROPIC_MODEL=GLM-5.1",
-      "environmentHash": "ANTHROPIC_BASE_URL=https://open.bigmodel.cn/api/anthropic|ANTHROPIC_MODEL=GLM-5.1"
+      "customModels": "glm-5.1\nglm-4.7\nglm-4.5-air\ndeepseek-v4-pro[1m]\ndeepseek-v4-flash",
+      "lastModel": "glm-5.1",
+      "environmentVariables": "ANTHROPIC_BASE_URL=https://api.deepseek.com/anthropic\nANTHROPIC_AUTH_TOKEN=sk-705c961e19d74b31962fb6d154bea5d6\nANTHROPIC_MODEL=deepseek-v4-flash\nANTHROPIC_DEFAULT_OPUS_MODEL=deepseek-v4-pro[1m]\nANTHROPIC_DEFAULT_SONNET_MODEL=deepseek-v4-pro[1m]\nANTHROPIC_DEFAULT_HAIKU_MODEL=deepseek-v4-flash\nCLAUDE_CODE_SUBAGENT_MODEL=deepseek-v4-flash\nCLAUDE_CODE_SIMPLE=1\nAPI_TIMEOUT_MS=3000000\nCLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1",
+      "environmentHash": "ANTHROPIC_BASE_URL=https://api.deepseek.com/anthropic|ANTHROPIC_DEFAULT_HAIKU_MODEL=deepseek-v4-flash|ANTHROPIC_DEFAULT_OPUS_MODEL=deepseek-v4-pro[1m]|ANTHROPIC_DEFAULT_SONNET_MODEL=deepseek-v4-pro[1m]|ANTHROPIC_MODEL=deepseek-v4-flash"
     },
     "codex": {
       "enabled": false,
@@ -67,19 +80,19 @@
   },
   "settingsProvider": "claude",
   "savedProviderModel": {
-    "claude": "GLM-5.1"
+    "claude": "deepseek-v4-flash"
   },
   "savedProviderEffort": {
     "claude": "high"
   },
   "savedProviderServiceTier": {},
   "savedProviderThinkingBudget": {
-    "claude": "xhigh"
+    "claude": "medium"
   },
   "savedProviderPermissionMode": {
     "claude": "yolo"
   },
-  "lastCustomModel": "GLM-5.1",
+  "lastCustomModel": "deepseek-v4-flash",
   "maxTabs": 3,
   "tabBarPosition": "input",
   "enableAutoScroll": true,

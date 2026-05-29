@@ -1,0 +1,24 @@
+{
+  "id": "conv-1780046620831-yl3xgszp7",
+  "providerId": "claude",
+  "title": "Review reasoning for issues",
+  "titleGenerationStatus": "success",
+  "createdAt": 1780046620834,
+  "updatedAt": 1780046783689,
+  "lastResponseAt": 1780046783689,
+  "sessionId": "c4ae453b-bab4-4cef-b57f-c9b5f70c06d6",
+  "providerState": {
+    "providerSessionId": "c4ae453b-bab4-4cef-b57f-c9b5f70c06d6"
+  },
+  "currentNote": "leetcode/155. 最小栈.md",
+  "usage": {
+    "model": "deepseek-v4-flash",
+    "inputTokens": 72,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 5504,
+    "contextWindow": 200000,
+    "contextTokens": 5576,
+    "percentage": 3,
+    "contextWindowIsAuthoritative": true
+  }
+}

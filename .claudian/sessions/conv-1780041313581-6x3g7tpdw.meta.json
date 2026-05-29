@@ -1,0 +1,27 @@
+{
+  "id": "conv-1780041313581-6x3g7tpdw",
+  "providerId": "claude",
+  "title": "你好",
+  "titleGenerationStatus": "pending",
+  "createdAt": 1780041313581,
+  "updatedAt": 1780045743044,
+  "lastResponseAt": 1780041349609,
+  "sessionId": "128f9018-80e6-4184-ba91-5680937e4fe3",
+  "providerState": {
+    "providerSessionId": "128f9018-80e6-4184-ba91-5680937e4fe3",
+    "previousProviderSessionIds": [
+      "6a911b64-4218-48cc-a5a2-0583b8e0e25e"
+    ]
+  },
+  "currentNote": "README.md",
+  "usage": {
+    "model": "deepseek-v4-flash",
+    "inputTokens": 110,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 2688,
+    "contextWindow": 200000,
+    "contextTokens": 2798,
+    "percentage": 1,
+    "contextWindowIsAuthoritative": true
+  }
+}
