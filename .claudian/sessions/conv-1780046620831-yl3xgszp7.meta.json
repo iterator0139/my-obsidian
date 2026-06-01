@@ -1,11 +1,11 @@
 {
   "id": "conv-1780046620831-yl3xgszp7",
   "providerId": "claude",
-  "title": "Review reasoning for issues",
-  "titleGenerationStatus": "success",
+  "title": "你好",
+  "titleGenerationStatus": "failed",
   "createdAt": 1780046620834,
-  "updatedAt": 1780046783689,
-  "lastResponseAt": 1780046783689,
+  "updatedAt": 1780060652251,
+  "lastResponseAt": 1780060094561,
   "sessionId": "c4ae453b-bab4-4cef-b57f-c9b5f70c06d6",
   "providerState": {
     "providerSessionId": "c4ae453b-bab4-4cef-b57f-c9b5f70c06d6"

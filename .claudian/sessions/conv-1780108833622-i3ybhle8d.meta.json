@@ -1,0 +1,23 @@
+{
+  "id": "conv-1780108833622-i3ybhle8d",
+  "providerId": "claude",
+  "title": "Review problem-solving approach",
+  "titleGenerationStatus": "success",
+  "createdAt": 1780108833626,
+  "updatedAt": 1780110034692,
+  "lastResponseAt": 1780110034692,
+  "sessionId": "b7ab1084-9798-4219-b376-4b41ae941d3d",
+  "providerState": {
+    "providerSessionId": "b7ab1084-9798-4219-b376-4b41ae941d3d"
+  },
+  "usage": {
+    "model": "deepseek-v4-flash",
+    "inputTokens": 325,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 3968,
+    "contextWindow": 200000,
+    "contextTokens": 4293,
+    "percentage": 2,
+    "contextWindowIsAuthoritative": true
+  }
+}
