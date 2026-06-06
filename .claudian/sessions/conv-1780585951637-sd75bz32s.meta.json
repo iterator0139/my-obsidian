@@ -1,0 +1,24 @@
+{
+  "id": "conv-1780585951637-sd75bz32s",
+  "providerId": "claude",
+  "title": "Solve LeetCode problem using five-minute method",
+  "titleGenerationStatus": "success",
+  "createdAt": 1780585951638,
+  "updatedAt": 1780586106336,
+  "lastResponseAt": 1780586106336,
+  "sessionId": "830138a1-a9f6-4739-9e7d-95102c38f180",
+  "providerState": {
+    "providerSessionId": "830138a1-a9f6-4739-9e7d-95102c38f180"
+  },
+  "currentNote": "leetcode/525. 连续数组.md",
+  "usage": {
+    "model": "glm-4.7",
+    "inputTokens": 696,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 23936,
+    "contextWindow": 200000,
+    "contextTokens": 24632,
+    "percentage": 12,
+    "contextWindowIsAuthoritative": true
+  }
+}

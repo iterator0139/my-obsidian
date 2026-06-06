@@ -4,13 +4,13 @@
   "title": "Explain context modules concept",
   "titleGenerationStatus": "success",
   "createdAt": 1780501508544,
-  "updatedAt": 1780501864866,
+  "updatedAt": 1780585909323,
   "lastResponseAt": 1780501864866,
   "sessionId": "103269b3-7546-4abf-8494-e691d831af75",
   "providerState": {
     "providerSessionId": "103269b3-7546-4abf-8494-e691d831af75"
   },
-  "currentNote": "ideas/一个理想的上下文模块应该是什么样的.md",
+  "currentNote": "ideas/智能上下文层/一个理想的上下文模块应该是什么样的.md",
   "usage": {
     "model": "glm-4.7",
     "inputTokens": 795,
