@@ -1,0 +1,24 @@
+{
+  "id": "conv-1780473070878-ctj1cnzh4",
+  "providerId": "claude",
+  "title": "整合初始要求与周报完成总结",
+  "titleGenerationStatus": "success",
+  "createdAt": 1780473070880,
+  "updatedAt": 1780656249680,
+  "lastResponseAt": 1780478016809,
+  "sessionId": "43af8d76-b1c8-40ea-b605-33d3cb1e98c4",
+  "providerState": {
+    "providerSessionId": "43af8d76-b1c8-40ea-b605-33d3cb1e98c4"
+  },
+  "currentNote": "note/Untitled.md",
+  "usage": {
+    "model": "deepseek-v4-flash",
+    "inputTokens": 397,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 43008,
+    "contextWindow": 200000,
+    "contextTokens": 43405,
+    "percentage": 22,
+    "contextWindowIsAuthoritative": true
+  }
+}

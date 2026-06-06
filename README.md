@@ -1,7 +1,5 @@
 # my-obsidian
 
-智谱 
-99d8dd1d954c483188a435c6203d714f.01nykoAiEN8Two5Q
-eec29fe6dd664695962ea72423d835fe.5NuVJ17YoR0nI09j
-DS
-sk-705c961e19d74b31962fb6d154bea5d6
+个人 Obsidian 笔记库。
+
+API 密钥与凭证请保存在 `local/credentials.md`（已在 `.gitignore` 中，不会提交到 Git）。
