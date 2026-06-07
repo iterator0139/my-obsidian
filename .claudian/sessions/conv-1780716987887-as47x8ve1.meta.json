@@ -1,0 +1,23 @@
+{
+  "id": "conv-1780716987887-as47x8ve1",
+  "providerId": "claude",
+  "title": "Explain 5-minute LeetCode problem-solving method",
+  "titleGenerationStatus": "success",
+  "createdAt": 1780716987888,
+  "updatedAt": 1780751234178,
+  "lastResponseAt": 1780747094144,
+  "sessionId": null,
+  "providerState": {
+    "providerSessionId": "ca75a38e-e3e8-4f30-8b64-ae424ffef650"
+  },
+  "usage": {
+    "model": "deepseek-v4-flash",
+    "inputTokens": 31,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 74112,
+    "contextWindow": 200000,
+    "contextTokens": 74143,
+    "percentage": 37,
+    "contextWindowIsAuthoritative": true
+  }
+}

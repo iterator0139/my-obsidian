@@ -1,8 +1,8 @@
 {
   "userName": "",
   "permissionMode": "yolo",
-  "model": "glm-4.7",
-  "thinkingBudget": "medium",
+  "model": "glm-4.5-air",
+  "thinkingBudget": "xhigh",
   "effortLevel": "high",
   "serviceTier": "default",
   "enableAutoTitleGeneration": true,
@@ -81,19 +81,19 @@
   },
   "settingsProvider": "claude",
   "savedProviderModel": {
-    "claude": "glm-4.7"
+    "claude": "glm-4.5-air"
   },
   "savedProviderEffort": {
     "claude": "high"
   },
   "savedProviderServiceTier": {},
   "savedProviderThinkingBudget": {
-    "claude": "medium"
+    "claude": "xhigh"
   },
   "savedProviderPermissionMode": {
     "claude": "yolo"
   },
-  "lastCustomModel": "glm-4.7",
+  "lastCustomModel": "glm-4.5-air",
   "maxTabs": 3,
   "tabBarPosition": "input",
   "enableAutoScroll": true,

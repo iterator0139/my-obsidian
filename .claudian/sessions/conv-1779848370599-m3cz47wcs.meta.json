@@ -4,7 +4,7 @@
   "title": "Say hello in Chinese",
   "titleGenerationStatus": "success",
   "createdAt": 1779848370626,
-  "updatedAt": 1780108651568,
+  "updatedAt": 1780716858009,
   "lastResponseAt": 1780108651568,
   "sessionId": null,
   "providerState": {
@@ -21,6 +21,6 @@
     "contextWindow": 200000,
     "contextTokens": 3238,
     "percentage": 2,
-    "contextWindowIsAuthoritative": true
+    "contextWindowIsAuthoritative": false
   }
 }

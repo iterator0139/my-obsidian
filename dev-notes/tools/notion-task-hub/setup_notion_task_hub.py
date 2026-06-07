@@ -111,6 +111,7 @@ def create_hub_page(token: str, parent_page_id: str) -> str:
                                         "通过不同视图切换大盘 / Focus / 回溯。"
                                         "每天早上在「全部任务」勾选 ☑️今日重点（建议 3 个），"
                                         "Focus 视图只显示你亲手挑选的任务；"
+                                        "任务标为「已完成」后会自动从 Focus / 四象限消失；"
                                         "每周日在下方 AI 指令处生成周报。"
                                     ),
                                 },
@@ -210,8 +211,25 @@ def ensure_focus_property(token: str, data_source_id: str) -> None:
     )
 
 
-def focus_view_filter() -> dict[str, Any]:
+def legacy_focus_view_filter() -> dict[str, Any]:
+    """旧版 Focus / 四象限筛选（仅今日重点，不含完成态排除）。"""
     return {"property": "今日重点", "checkbox": {"equals": True}}
+
+
+def focus_view_filter() -> dict[str, Any]:
+    """Focus / 四象限：今日重点且未完成（标记完成后自动从面板消失）。"""
+    return {
+        "and": [
+            {"property": "今日重点", "checkbox": {"equals": True}},
+            {"property": "状态", "status": {"does_not_equal": "已完成"}},
+        ],
+    }
+
+
+def is_focus_panel_filter(view_filter: dict[str, Any] | None) -> bool:
+    if not view_filter:
+        return False
+    return view_filter in {focus_view_filter(), legacy_focus_view_filter()}
 
 
 def focus_list_configuration(prop_ids: dict[str, str]) -> dict[str, Any]:
@@ -443,6 +461,50 @@ def _create_focus_list_view(
     )
 
 
+def _is_quadrant_view_name(name: str) -> bool:
+    return name in {"🔲 四象限矩阵", "🔲 四象限"} or name.startswith("🔲 四象限")
+
+
+def upgrade_focus_quadrant_filters(
+    token: str,
+    database_id: str,
+    data_source_id: str,
+) -> list[str]:
+    """将 Focus / 四象限视图筛选升级为「今日重点且未完成」。"""
+    updated: list[str] = []
+    target_filter = focus_view_filter()
+    seen: set[str] = set()
+
+    for param in (f"database_id={database_id}", f"data_source_id={data_source_id}"):
+        refs = notion_request("GET", f"/views?{param}", token)
+        for ref in refs.get("results", []):
+            vid = ref["id"]
+            if vid in seen:
+                continue
+            seen.add(vid)
+
+            try:
+                view = notion_request("GET", f"/views/{vid}", token)
+            except RuntimeError:
+                continue
+
+            name = view.get("name", "")
+            view_type = view.get("type", "")
+            current_filter = view.get("filter")
+
+            is_focus_list = _is_focus_view_name(name) and view_type == "list"
+            is_quadrant_board = _is_quadrant_view_name(name) and view_type == "board"
+            if not (is_focus_list or is_quadrant_board):
+                continue
+            if current_filter == target_filter:
+                continue
+
+            update_view(token, vid, {"filter": target_filter})
+            updated.append(name)
+
+    return updated
+
+
 def upsert_focus_views(
     token: str,
     database_id: str,
@@ -475,7 +537,7 @@ def upsert_focus_views(
             is_main = parent_db.replace("-", "") == database_id.replace("-", "")
             target_name = "🎯 Focus 今日重点" if is_main else "🎯 Focus"
 
-            if view.get("type") == "list" and view.get("filter") == focus_view_filter():
+            if view.get("type") == "list" and is_focus_panel_filter(view.get("filter")):
                 if is_main:
                     main_ok = True
                 else:
@@ -730,6 +792,7 @@ def main() -> None:
     print()
     print("📌 使用提示：")
     print("   • 主页「📊 快速总览」三个关联视图一屏看全局（免费）")
+    print("   • 任务标为「已完成」后自动从 Focus / 四象限消失")
     print("   • 每天早上勾选 ☑️今日重点后，在「🔲 四象限矩阵」给任务分象限")
     print("   • 再打开「🎯 Focus 今日重点」盯执行顺序")
     print("   • 每周日复制主页 AI 指令 + 参考「📈 项目统计」生成周报")
