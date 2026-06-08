@@ -1,0 +1,24 @@
+{
+  "id": "conv-1780802139842-4kz3wknf0",
+  "providerId": "claude",
+  "title": "Write LeetCode 1094 Solution with Interval Method",
+  "titleGenerationStatus": "success",
+  "createdAt": 1780802139842,
+  "updatedAt": 1780843177357,
+  "lastResponseAt": 1780802192274,
+  "sessionId": null,
+  "providerState": {
+    "providerSessionId": "62460096-83e8-4e29-ac30-ca1e74da714a"
+  },
+  "currentNote": "leetcode/1094. 拼车.md",
+  "usage": {
+    "model": "glm-4.5-air",
+    "inputTokens": 70,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 36339,
+    "contextWindow": 200000,
+    "contextTokens": 36409,
+    "percentage": 18,
+    "contextWindowIsAuthoritative": true
+  }
+}
