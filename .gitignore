@@ -2,6 +2,7 @@
 .obsidian/workspace.json
 .obsidian/workspace-mobile.json
 .trash/
-./local/
+local/
 .claudian/claudian-settings.json
 .claudian
+scripts/
