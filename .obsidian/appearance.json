@@ -1,5 +1,8 @@
 {
   "theme": "moonstone",
   "cssTheme": "AnuPpuccin",
-  "accentColor": "#848c90"
+  "accentColor": "#848c90",
+  "enabledCssSnippets": [
+    "pdf-cjk-export"
+  ]
 }
