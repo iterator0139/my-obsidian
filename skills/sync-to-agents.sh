@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
-# Sync Obsidian vault skills -> Cursor / Claude Code agent skill paths
+# Sync Obsidian vault skills -> Cursor / Claude Code / Codex agent skill paths
 set -euo pipefail
 
 VAULT_SKILLS="$(cd "$(dirname "$0")" && pwd)"
 CURSOR_SKILLS="${HOME}/.cursor/skills"
 CLAUDE_SKILLS="${HOME}/.claude/skills"
+CODEX_SKILLS="${HOME}/.codex/skills"
 
 link_skill() {
   local name="$1"
@@ -33,8 +34,12 @@ link_skill() {
 }
 
 echo "Vault skills: ${VAULT_SKILLS}"
-link_skill "learn-tech-framework" "$CURSOR_SKILLS"
-link_skill "learn-tech-framework" "$CLAUDE_SKILLS"
-link_skill "layered-tech-deep-dive" "$CURSOR_SKILLS"
-link_skill "layered-tech-deep-dive" "$CLAUDE_SKILLS"
+for s in learn-tech-framework layered-tech-deep-dive leetcode-five-minute-read skill-confluence-markdown-upload \
+         analyze-change-context define-capability-contract design-responsibility-architecture \
+         define-development-task-contract code-implementation-spec plan-behavioral-validation \
+         execute-contract-verification; do
+  link_skill "$s" "$CURSOR_SKILLS"
+  link_skill "$s" "$CLAUDE_SKILLS"
+  link_skill "$s" "$CODEX_SKILLS"
+done
 echo "done."

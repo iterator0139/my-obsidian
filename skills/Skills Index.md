@@ -15,6 +15,20 @@ aliases: [Agent Skills 索引, Skills Hub]
 | learn-tech-framework | 从 0 到 1 认识技术框架，输出宏观文档 | [[skills/learn-tech-framework/SKILL\|SKILL]] |
 | layered-tech-deep-dive | 在宏观理解之后，选择某一层做抽象、流程、算法、系统设计、代码实现下钻 | [[skills/layered-tech-deep-dive/SKILL\|SKILL]] |
 
+### AI Coding 流程（来自 Codex，见 [[AI Coding流程]]）
+
+按“语义 → 架构 → 模块 → 实现 → 验证”分层，产物不互相越权：
+
+| Skill | 层级 | 用途 | 入口 |
+|-------|------|------|------|
+| analyze-change-context | 0. 问题定界 | 变更前梳理真实问题、基线行为、约束与非目标 | [[skills/analyze-change-context/SKILL\|SKILL]] |
+| define-capability-contract | 1. 能力语义 | 定义能力的可观察行为、状态规则、系统级不变量、失败语义 | [[skills/define-capability-contract/SKILL\|SKILL]] |
+| design-responsibility-architecture | 2. 总体架构 | 把语义契约分解为事实归属、决策权、边界与架构不变量 | [[skills/design-responsibility-architecture/SKILL\|SKILL]] |
+| define-development-task-contract | 3. 开发任务契约 | 从架构切出可独立实现的任务，声明局部保证与非责任 | [[skills/define-development-task-contract/SKILL\|SKILL]] |
+| code-implementation-spec | 4. 实现规格 | 把任务契约映射到接口、算法、调用顺序、异常与状态归属 | [[skills/code-implementation-spec/SKILL\|SKILL]] |
+| plan-behavioral-validation | 5. 验证计划 | 按范围（单元/接口/集成/能力）规划行为优先的验证方案 | [[skills/plan-behavioral-validation/SKILL\|SKILL]] |
+| execute-contract-verification | 5. 验证执行 | 执行验证计划、收集证据、给出有边界的通过/失败结论 | [[skills/execute-contract-verification/SKILL\|SKILL]] |
+
 ## 相关方法论（vault 内）
 
 - [[Ideas/怎么认识一个事物]] — 认识事物的 SOP（宏观）
@@ -39,9 +53,12 @@ bash skills/sync-to-agents.sh
 
 会创建/更新：
 
-- `~/.cursor/skills/learn-tech-framework` → 本 vault
-- `~/.claude/skills/learn-tech-framework` → 本 vault
-- `~/.claude/skills/layered-tech-deep-dive` → 本 vault
+- `~/.cursor/skills/{skill}` → 本 vault（Cursor）
+- `~/.claude/skills/{skill}` → 本 vault（Claude Code）
+- `~/.codex/skills/{skill}` → 本 vault（Codex）
+
+覆盖 `learn-tech-framework`、`layered-tech-deep-dive`、`leetcode-five-minute-read`、`skill-confluence-markdown-upload`
+以及 AI Coding 流程的全部 7 个 skill。
 
 ## 使用方式
 
