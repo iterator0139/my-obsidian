@@ -52,6 +52,7 @@ For **selected-layer deep dive** after macro understanding, use `layered-tech-de
 - [ ] Phase 7: Write doc(s) → frameworks/{slug}/
 - [ ] Phase 8: Optional Obsidian compact export
 - [ ] Phase 9: Deep-dive handoff — name candidate layers and call `layered-tech-deep-dive` when requested
+
 ```
 
 ### Phase 1: Recon (evidence first)

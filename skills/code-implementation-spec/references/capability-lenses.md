@@ -1,90 +1,105 @@
-# Capability lenses
+# 视角清单
 
-Select every lens materially affected by the change. A lens is a set of questions, not a mandatory document section.
+视角是按关注点挑的，不是必填章节。先判断这次改动触及哪些机制，只取命中的视角。
 
-## Domain model and rules
+选中的视角，它的问题必须在标注的落点里答完。答不出来的写进待定事项，不要用实现假设填上。
 
-Use for new or changed concepts, invariants, validation, calculation, or policy.
+## 领域模型与规则
 
-- Define source data, derived data, validation boundaries, and invalid cases.
-- State which rules are pure functions and which require I/O.
-- Give examples and boundary cases that determine the algorithm.
+- 触发：新增或变更概念、不变量、校验、计算、策略。
+- 必答：源数据与派生数据分别是什么；校验边界在哪、非法输入有哪些；哪些规则是纯函数、哪些
+  要 I/O；哪些边界情况决定算法。
+- 落点：第 1 层数据定义；第 3 层算法。
+- 图：判定表或判定树，条件组合三个以上时用。
+- 证据：模型与校验测试、规则表。
 
-Evidence: model/validation tests and rule tables.
+## 生命周期与状态
 
-## Lifecycle and state
+- 触发：持久化或运行时实体有三个以上状态，或存在终态语义。
+- 必答：有哪些状态、哪些转换合法、终态怎么保护、谁有权写；持久化时机与时间戳；被拒绝的
+  转换返回什么；哪些是持久事实、哪些只是进程内的协调状态。
+- 落点：1.3 生命周期。
+- 图：状态机图或状态转换表。
+- 证据：状态转换矩阵；有竞态时补交错测试。
 
-Use when a persistent or runtime entity has meaningful transitions.
+## 数据定义与演化
 
-- Define all states, legal transitions, terminal-state protection, and the authorized writer.
-- State persistence timing, timestamps, and what a rejected transition returns.
-- Distinguish persistent facts from process-local coordination state.
+- 触发：新增或变更持久化字段、消息契约，或跨模块可见的数据结构。
+- 必答：每个字段的含义与约束；读写形状与事实归属；兼容行为；迁移与回填策略；写入原子性
+  假设、回滚与补偿；保留期限。
+- 落点：第 1 层整节。
+- 图：ER 图或类图。
+- 证据：序列化、兼容性、迁移测试。
 
-Evidence: transition matrix and transition-race tests when applicable.
+## 流程与编排
 
-## Workflow and orchestration
+- 触发：一个以上步骤、模块、分支、重试或汇合共同决定行为。
+- 必答：触发条件、输入、完成与终态输出、交接点、分支与汇合条件；正常路径和重要的备选
+  路径；哪一层负责编排、哪一层只执行能力。
+- 落点：2.1、2.2。
+- 图：活动图。
+- 证据：顺序测试、端到端或集成场景。
 
-Use when more than one step, module, branch, retry, or join creates behavior.
+## 数据流转
 
-- Define trigger, inputs, completion/terminal outputs, hand-offs, and branch/join conditions.
-- Give normal and important alternate sequences at call/effect granularity.
-- State which layer orchestrates and which layers only execute a capability.
+- 触发：数据跨两个以上模块或存储，或存在变形、聚合、派生。
+- 必答：每份数据在哪产生、在哪变形、落在哪个存储、谁读；存储里的名字与数据定义是否一致；
+  哪一步是权威来源。
+- 落点：2.3。
+- 图：DFD，上下文图加一层图。
+- 证据：数据一致性检查、存储读写测试。
 
-Evidence: sequence tests and end-to-end or integration scenarios.
+## 并发与异步资源
 
-## Concurrency and asynchronous resources
+- 触发：多任务、回调、流、锁、取消、共享可变状态，或有意义的等待。
+- 必答：共享事实与临界区；锁范围；每个提交点与竞态窗口；重复或重入行为；资源归属、注册
+  与清理；取消或超时之后迟到的结果还能不能提交。
+- 落点：2.5。
+- 图：定时图。
+- 证据：用栅栏、假件或受控事件做的确定性交错测试。
 
-Use for multiple tasks, callbacks, streams, locks, cancellation, shared mutable state, or meaningful awaits.
+## 失败与恢复
 
-- Identify shared facts, critical sections, lock scope, and every commit/race boundary.
-- Define duplicate/reentrant behavior and resource ownership, registration, and cleanup.
-- State whether a late result can commit after cancellation, timeout, or supersession.
+- 触发：存在不可逆副作用，或可能重复投递、超时、部分成功、结果未知。
+- 必答：失败点各在哪里；每个失败点返回什么；哪些失败可重试、哪些不能；部分成功后靠什么
+  收敛；进程中断后从哪里恢复。
+- 落点：2.5。
+- 图：存在交错时用定时图。
+- 证据：故障注入、重复投递场景。
 
-Evidence: deterministic interleaving tests using barriers, fakes, or controlled events.
+## 分布式可靠性
 
-## Persistence and evolution
+- 触发：跨进程协调、投递、幂等、租约、重试或恢复。
+- 必答：归属与路由；幂等键；重复怎么处理；顺序假设；可见性保证；每个副作用顺序上的崩溃
+  窗口怎么恢复，或者明确声明不在范围内。
+- 落点：2.4、2.5。
+- 图：顺序图。
+- 证据：重复投递与故障注入。
 
-Use for data stores, snapshots, schema/model changes, or backward compatibility.
+## 外部协议与适配
 
-- Define read/write shape, source of truth, compatibility behavior, and migration/backfill policy.
-- Specify write atomicity assumptions, rollback/compensation, and data retention where relevant.
+- 触发：HTTP、RPC、框架边界、SDK、队列、文件，或远端 worker。
+- 必答：本地契约到远端请求、响应、事件的映射；认证与超时；错误归一化；远端受理、远端
+  完成、结果未知、传输失败各自的语义；凭据不落进业务事实。
+- 落点：2.4；附录 A。
+- 图：顺序图。
+- 证据：用协议形状的假件做契约测试，必要时补集成测试。
 
-Evidence: serialization, compatibility, and migration tests.
+## 对外契约（接口与事件）
 
-## External protocol and adaptation
+- 触发：调用方、客户端或事件消费者能看到行为变化。
+- 必答：请求或事件的结构；成功与拒绝各自的结果；错误映射；兼容与顺序保证；哪些是内部
+  状态、哪些是对外投射的事实。跨模块可见的结果、字段或异常，要能回答谁产出、谁消费、
+  消费方必须做什么，写在 2.4 的交接表里；模块内部的字段只写含义和取值决策。
+- 落点：第 3 层接口；附录 A。
+- 图：类图或顺序图。
+- 证据：契约测试、面向消费者的示例。
 
-Use for HTTP/RPC, framework boundaries, SDKs, queues, files, or remote workers.
+## 安全、运维与性能
 
-- Map local contract to remote request/response/event shapes, authentication, timeout, and error normalization.
-- Keep credentials out of persisted business facts.
-- State the semantic meaning of remote acceptance, remote completion, unknown outcome, and transport failure.
-
-Evidence: contract tests with protocol-shaped fakes; integration tests where required.
-
-## Distributed reliability
-
-Use for cross-process coordination, delivery, idempotency, leases, retries, or recovery.
-
-- Define ownership/routing, idempotency keys, duplicate handling, ordering assumptions, and visibility guarantees.
-- Enumerate effect-order crash windows. For each, state recovery behavior or explicitly declare it out of scope.
-
-Evidence: duplicate-delivery and fault-injection scenarios.
-
-## Public API and event contract
-
-Use when callers, clients, or event consumers observe changed behavior.
-
-- Define request/event schema, success and rejection outcomes, error mapping, compatibility, and ordering guarantees.
-- Separate internal state from externally projected facts.
-
-Evidence: contract tests and consumer-facing examples.
-
-## Security, operations, and performance
-
-Select each only when its constraints change or create material risk.
-
-- Security: trust boundary, authorization, sensitive-data lifetime, audit needs.
-- Operations: logs, metrics, correlation IDs, alerts, diagnosis of partial failure.
-- Performance: hot path, complexity, limits, backpressure, concurrency and capacity assumptions.
-
-Evidence: focused security, observability, or load checks proportionate to risk.
+- 触发：各自的约束发生变化，或引入实质风险时才选。
+- 必答：安全看信任边界、鉴权、敏感数据生命周期、审计；运维看日志、指标、追踪 ID、告警、
+  部分失败的排查；性能看热路径、复杂度、限额、背压、并发与容量假设。
+- 落点：第 3 层限制条件；附录 B。
+- 图：一般不用图。
+- 证据：与风险相称的专项检查。

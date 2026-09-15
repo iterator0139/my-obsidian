@@ -1,46 +1,131 @@
-# Output blueprints
+# 输出骨架
 
-Choose a blueprint based on the implementation unit. Add only the sections required by selected capability lenses.
+详细设计沿着一条问题链展开：现在坏在哪，选了哪条路，改完系统变成什么样，数据由谁承载，
+路径怎么走，每个模块变成什么责任，还差什么没定。
 
-## Whole-flow specification
+文档分四层。第 0 层是只需要做决策的人可以停下的地方，第 1 到 3 层是论证，附录是实现时查阅
+的资料，评审时可以跳过。
 
-1. Semantic commitments, scope, authority, and non-goals.
-2. Entry, terminal observable outcomes, and compatibility constraints.
-3. Participating modules, fact ownership, and hand-off contracts.
-4. Normal-path sequence with state/effect ordering.
-5. Alternate, failure, retry, timeout, and interruption paths selected by the lenses.
-6. Interface collaboration: producer, consumer, decision/question, and required action for each non-trivial result/event/field; then signatures and data changes by code location.
-7. Verification matrix: commitment → mechanism → unit/contract/integration evidence.
+只保留这次改动触及的小节。没有触发条件的小节不出现。
 
-## Submodule specification
+## 第 0 层｜问题与方案
 
-1. Parent design reference and module responsibility.
-2. Input assumptions and required dependency contracts.
-3. Local semantic guarantees and explicit non-responsibilities.
-4. Public capabilities: for each non-trivial capability, state problem, effect, invocation, completion boundary, and non-responsibilities.
-5. Interface collaboration contract: for each public method, result, field, exception, or event, state producer, consumer, question answered, and required next action.
-6. Public facade: show the minimal caller protocol first, then signatures, return decisions, exceptions, and caller obligations.
-7. Internal facts, algorithms, state/effect order, and concurrency/resource rules.
-8. Output hand-offs and integration requirements for callers/downstream modules.
-9. Exact code locations and local test matrix; separately list parent-owned integration evidence.
+**0.1 问题。** 回答现在坏在哪，以及为什么必须现在改。
 
-## Traceability matrix
+**0.2 方案。** 回答选了哪种做法，否掉了哪些。
 
-Use one row per material semantic commitment.
+**0.3 改后行为。** 回答用户或调用方在改动后能看到什么，以及哪些行为刻意不变。
 
-| Semantic commitment | Code mechanism / owner | Failure or race rule | Evidence |
+**0.4 影响面。** 回答哪些模块变了，责任往哪里移。
+
+| 模块 | 新责任 | 不再负责 | 依赖谁 | 被谁依赖 |
+| --- | --- | --- | --- | --- |
+
+**0.5 阻塞项。** 回答开工前必须先定的事，以及每件事谁负责。
+
+## 第 1 层｜数据定义
+
+只在本次改动新增或变更持久化字段、消息契约，或跨模块可见的数据结构时出现。
+
+**1.1 数据字典。** 回答每个新增或变更字段的含义和约束：类型、取值范围、默认值、可空、单位。
+
+**1.2 关系与归属。** 回答一条记录由什么标识、谁引用谁、哪个模块有写权。
+
+**1.3 生命周期。** 回答有哪些状态、哪些转换合法、哪些是终态。
+
+**1.4 兼容与迁移。** 回答存量数据怎么到新形状，以及出问题怎么回退。
+
+## 第 2 层｜系统路径
+
+**2.1 路径形状。** 回答这条路分几段，关键提交点在哪。
+
+**2.2 逻辑流。** 回答哪一步先跑、哪个模块把控制权交给哪个。用编号步骤，分支或责任归属从
+步骤里读不出来时补一张图。跨模块换手的位置标 H 编号。
+
+**2.3 数据流。** 回答每份数据在哪里产生、变形、落库、被读取。编号沿用 2.2，两个视图必须
+能对上。
+
+**2.4 交接点。** 回答每个 H 编号上交接的是什么、接收方必须做什么、失败由谁负责。
+
+| H# | 触发条件 | 从 → 到 | 交接内容 | 接收方义务 | 失败归属 |
+| --- | --- | --- | --- | --- | --- |
+
+**2.5 失败与并发。** 只写会改变路径形状的那些：非法输入、业务拒绝、依赖失败、超时、重复
+投递、取消、进程中断。
+
+## 第 3 层｜模块改动
+
+每个改动模块一节，按这个顺序：
+
+- **责任。** 这个模块现在保证什么。
+- **输入项。** 接收什么，以及什么必须已经成立。
+- **输出项。** 返回、发出或持久化什么。
+- **算法。** 非显然的结果怎么算，以及决定它的边界情况。
+- **流程逻辑。** 它自己内部的步骤、等待、副作用的顺序。
+- **接口。** 对其它模块暴露什么，先讲能力再讲签名。
+- **存储。** 读写什么，什么时候读写。
+- **限制条件。** 实现上受什么约束。
+- **非责任。** 哪些属于别的模块或别的任务。
+
+描述一个对外能力时按这个顺序：解决什么问题、完成什么状态或副作用、什么时候被调用、完成
+边界在哪，最后才是签名和错误。
+
+非平凡的接口补一段最小调用协议，用来说明正确顺序和返回值分支。
+
+## 第 4 层｜待定事项
+
+回答还有什么没定、每件事谁负责、没定就动手会坏在哪。
+
+## 附录
+
+**A 接口与完整字段。** 签名、类型、错误码、完整字段表。
+
+**B 验证点与证据。** 每条语义承诺一行。
+
+| 语义承诺 | 机制与归属 | 失败或竞态规则 | 证据 |
 | --- | --- | --- | --- |
-| Example: accepted cancellation cannot later become success | Controller transition gate | lifecycle lock rejects late success | deterministic race test |
 
-## Decision record format
-
-For a decision that materially changes behavior, record:
+**C 决策记录。** 每个改变行为的决策一条。
 
 ```text
-Decision: [chosen behavior]
-Context: [semantic commitment and constraints]
-Mechanism: [owner, interface, ordering]
-Alternatives rejected: [only meaningful alternatives]
-Evidence: [tests or inspection points]
-Open boundary: [explicitly deferred behavior, if any]
+决策：
+背景：
+机制：
+被否方案：
+证据：
+未覆盖边界：
 ```
+
+## 图的对应关系
+
+每个机制有一种默认表达形式，选图看机制，不看习惯。
+
+| 机制 | 图 | 出现在 | 回答什么 | 出现条件 |
+| --- | --- | --- | --- | --- |
+| 状态与流转 | 状态机图或状态转换表 | 1.3 | 有哪些状态、什么条件允许转换、哪里是终态 | 三个以上状态，或有终态语义 |
+| 数据模型与关系 | ER 图或类图 | 1.1、1.2 | 实体、字段、基数、唯一约束 | 数据模型变更 |
+| 控制流与分支 | 活动图 | 2.2 | 先做哪步、分支与汇合在哪、哪几段并发 | 步骤之间有分支、循环或并发 |
+| 数据流转 | DFD，上下文图加一层图 | 2.3 | 数据从哪来、在哪变形、落在哪个存储、谁读 | 数据跨两个以上模块或存储 |
+| 责任交接与顺序 | 顺序图；强调责任归属时用泳道图 | 2.4 | 谁在什么时机把什么交给谁 | 两个以上 owner 交接，或存在不可逆副作用 |
+| 竞态与提交窗口 | 定时图 | 2.5 | 两个并发动作可能在哪交错、谁先提交 | 存在共享事实的并发写 |
+| 判定规则 | 判定表或判定树 | 第 3 层算法 | 条件组合分别产生什么结果 | 同一处判定三个以上条件 |
+| 静态结构与依赖 | 组件图 | 0.4 | 谁依赖谁、依赖方向是否单向 | 改动跨三个以上模块 |
+| 字段与报文结构 | 用表，不画图 | 附录 A | 每个字段的含义与约束 | —— |
+
+图的要求：
+
+具体语法、渲染命令和校验方式见 `diagram-authoring`。
+
+- 一张图只回答一个问题，同一问题只用一种图。
+- 图里的名字与正文、数据定义同名。
+- 节点、步骤、交接点带编号，编号与正文一致，图可以当索引翻。
+- 并发画成并发，返回条件写正向条件，正文里没有的分支不画。
+- 每条箭头落到一个 owner 上，图不用来模糊责任。
+- 图与正文冲突时改图，不改正文。
+
+## 全流程级的替换
+
+同一套骨架，只换两处：
+
+- 第 0 层换成能力语义与范围：可观察行为、状态规则、系统级不变量、失败语义、非目标。
+- 第 1 层换成领域数据模型：整个能力范围的概念、归属与生命周期，而不是单个模块的存储。

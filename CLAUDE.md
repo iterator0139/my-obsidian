@@ -1,5 +1,15 @@
 # Obsidian Vault · Claude 项目说明
 
+## 所有文档输出（必读）
+
+产出的**所有文档**在返回前都必须过一遍 `skills/humanizer/SKILL.md`（也可用
+`$humanizer` / `/humanizer` 触发）；未自动触发时仍须读取并遵循该文件。
+
+- **范围**：技术文档、架构与方案文档、报告、计划、README、`skills/*/SKILL.md` 的说明文字、
+  commit / PR 文案、vault 笔记。
+- **例外**：与用户的对话回复本身不过 humanizer（那是对话语气，不是文档语气）；代码块、
+  行内代码、命令、路径、YAML 元数据及其链接目标一律不改。
+
 ## LeetCode 题解（必读）
 
 用户给出 **LeetCode / 算法题**、要求 **做题解 / 分析 / 破局眼 / 五分钟读题法** 时：

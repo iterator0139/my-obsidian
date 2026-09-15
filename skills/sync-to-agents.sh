@@ -37,7 +37,8 @@ echo "Vault skills: ${VAULT_SKILLS}"
 for s in learn-tech-framework layered-tech-deep-dive leetcode-five-minute-read skill-confluence-markdown-upload \
          analyze-change-context define-capability-contract design-responsibility-architecture \
          define-development-task-contract code-implementation-spec plan-behavioral-validation \
-         execute-contract-verification; do
+         execute-contract-verification write-precise-process-description humanizer \
+         process-logic-design diagram-authoring; do
   link_skill "$s" "$CURSOR_SKILLS"
   link_skill "$s" "$CLAUDE_SKILLS"
   link_skill "$s" "$CODEX_SKILLS"

@@ -14,6 +14,15 @@ aliases: [Agent Skills 索引, Skills Hub]
 |-------|------|------|
 | learn-tech-framework | 从 0 到 1 认识技术框架，输出宏观文档 | [[skills/learn-tech-framework/SKILL\|SKILL]] |
 | layered-tech-deep-dive | 在宏观理解之后，选择某一层做抽象、流程、算法、系统设计、代码实现下钻 | [[skills/layered-tech-deep-dive/SKILL\|SKILL]] |
+| write-precise-process-description | 描述并发/时序/阶段关系前，先判断关系类型再选连接词，写完用假想图核验，横跨所有写作场景 | [[skills/write-precise-process-description/SKILL\|SKILL]] |
+| humanizer | 去掉 AI 味写作套路（不是 X 而是 Y、单句收尾、强行三段、破折号滥用等），保留事实，横跨所有文档输出 | [[skills/humanizer/SKILL\|SKILL]] |
+| diagram-authoring | 把机制画成对应的图并渲染验证：PlantUML 默认、Mermaid 用于就地渲染，含 Windows / WSL 环境安装与 `-failfast2` 校验 | [[skills/diagram-authoring/SKILL\|SKILL]] |
+
+### 全局约定
+
+- **humanizer 是全局约束，不是可选技能**：本 vault 产出的所有文档（技术文档、架构文档、报告、方案、README、`skills/*/SKILL.md` 的说明文字、commit / PR 文案、Obsidian 笔记）在返回前都要过一遍 humanizer。
+- 例外：与用户的 Chat / CLI 回复本身不走 humanizer（那是对话语气，不是文档语气）；代码块、行内代码、命令、路径、YAML 元数据与其链接目标一律不改。
+- 这条约束目前写在 vault 根目录的 `CLAUDE.md` 里（Codex 侧当前没有全局规则文件），`sync-to-agents.sh` 负责 skill 链接，不负责这份规则文本。
 
 ### AI Coding 流程（来自 Codex，见 [[AI Coding流程]]）
 
@@ -24,8 +33,9 @@ aliases: [Agent Skills 索引, Skills Hub]
 | analyze-change-context | 0. 问题定界 | 变更前梳理真实问题、基线行为、约束与非目标 | [[skills/analyze-change-context/SKILL\|SKILL]] |
 | define-capability-contract | 1. 能力语义 | 定义能力的可观察行为、状态规则、系统级不变量、失败语义 | [[skills/define-capability-contract/SKILL\|SKILL]] |
 | design-responsibility-architecture | 2. 总体架构 | 把语义契约分解为事实归属、决策权、边界与架构不变量 | [[skills/design-responsibility-architecture/SKILL\|SKILL]] |
+| process-logic-design | 3. 流程逻辑 | 在架构与任务拆分之前梳理状态、分支、并发与外部效果，先画总图再展开子流程 | [[skills/process-logic-design/SKILL\|SKILL]] |
 | define-development-task-contract | 3. 开发任务契约 | 从架构切出可独立实现的任务，声明局部保证与非责任 | [[skills/define-development-task-contract/SKILL\|SKILL]] |
-| code-implementation-spec | 4. 实现规格 | 把任务契约映射到接口、算法、调用顺序、异常与状态归属 | [[skills/code-implementation-spec/SKILL\|SKILL]] |
+| code-implementation-spec | 4. 实现规格 | 把任务契约落成数据定义、系统路径、交接点与模块改动，按骨架输出并自检 | [[skills/code-implementation-spec/SKILL\|SKILL]] |
 | plan-behavioral-validation | 5. 验证计划 | 按范围（单元/接口/集成/能力）规划行为优先的验证方案 | [[skills/plan-behavioral-validation/SKILL\|SKILL]] |
 | execute-contract-verification | 5. 验证执行 | 执行验证计划、收集证据、给出有边界的通过/失败结论 | [[skills/execute-contract-verification/SKILL\|SKILL]] |
 
@@ -57,8 +67,7 @@ bash skills/sync-to-agents.sh
 - `~/.claude/skills/{skill}` → 本 vault（Claude Code）
 - `~/.codex/skills/{skill}` → 本 vault（Codex）
 
-覆盖 `learn-tech-framework`、`layered-tech-deep-dive`、`leetcode-five-minute-read`、`skill-confluence-markdown-upload`
-以及 AI Coding 流程的全部 7 个 skill。
+`correct-and-reflect`、`qa-read-popo-doc`、`understand-*` 等由其他来源维护，不在本脚本范围内。
 
 ## 使用方式
 

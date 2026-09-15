@@ -1,0 +1,4 @@
+interface:
+  display_name: "流程逻辑梳理"
+  short_description: "将复杂需求梳理为总分结构流程图和可验证的逻辑设计成果"
+  default_prompt: "Use $process-logic-design to clarify the process logic before architecture or task decomposition."
