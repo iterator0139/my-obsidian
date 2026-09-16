@@ -37,6 +37,9 @@ curl -fsSL -o ~/.tools/plantuml/plantuml.jar \
   https://github.com/plantuml/plantuml/releases/latest/download/plantuml.jar
 ```
 
+装完验证：`java -version` 应输出 21，`fc-list :lang=zh | wc -l` 应有几十条。渲染直接用 PATH
+里的 `java`，不用再解压便携 JDK。
+
 三个包各自解决一个问题：
 
 - `openjdk-21-jre-headless` 提供 JRE。headless 包不带 X11 依赖，正好绕开精简发行版缺 `libXext.so.6` 的问题。
@@ -59,15 +62,21 @@ which fc-cache                                 # 找不到 = fontconfig 没装
 ## 渲染
 
 ```bash
-JAVA=~/.tools/jdk21/jdk-*/bin/java
 JAR=~/.tools/plantuml/plantuml.jar
 
 # 单文件出 SVG
-$JAVA -Djava.awt.headless=true -jar $JAR -charset UTF-8 -tsvg -failfast2 -o out diagram.puml
+java -Djava.awt.headless=true -jar $JAR -charset UTF-8 -tsvg -failfast2 -o out diagram.puml
 
 # 整个目录出 PNG
-$JAVA -Djava.awt.headless=true -jar $JAR -charset UTF-8 -tpng -failfast2 -o out diagrams/
+java -Djava.awt.headless=true -jar $JAR -charset UTF-8 -tpng -failfast2 -o out diagrams/
 ```
+
+`java` 的取法按环境分：
+
+| 环境 | java | jar |
+| --- | --- | --- |
+| Windows | `%USERPROFILE%\.tools\jdk21\jdk-<版本>\bin\java.exe` | `%USERPROFILE%\.tools\plantuml\plantuml.jar` |
+| WSL | `/usr/bin/java`（apt 装的 jre-headless） | `~/.tools/plantuml/plantuml.jar` |
 
 `-failfast2` 不能省。不加它，PlantUML 遇到语法错误照样返回退出码 0，并把报错信息画成一张
 PNG 交付给你，不打开看根本发现不了。
